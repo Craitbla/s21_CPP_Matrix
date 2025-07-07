@@ -1,0 +1,24 @@
+FROM alpine:3.20
+
+# Установка зависимостей
+RUN apk --no-cache --upgrade add \
+    build-base \
+    gtest-dev \
+    gtest \
+    valgrind \
+    lcov \
+    cppcheck \
+    clang \
+    bash \
+    linux-headers \
+    git \
+    xdg-utils  # Для открытия отчетов
+
+# Настройка рабочей директории
+WORKDIR /app
+
+# Копирование исходного кода
+COPY . .
+
+# Целевая команда по умолчанию
+CMD ["make", "all"]
